@@ -1,5 +1,5 @@
 import { book } from "@/lib/content";
-import { contactEmail } from "@/lib/site";
+import { calendlyUrl, contactEmail } from "@/lib/site";
 import { CalendlyEmbed } from "./CalendlyEmbed";
 
 export function Book() {
@@ -20,7 +20,7 @@ export function Book() {
         </ol>
 
         <div className="book-slot mt-8">
-          <CalendlyEmbed url={process.env.NEXT_PUBLIC_CALENDLY_URL} />
+          <CalendlyEmbed url={calendlyUrl} />
         </div>
 
         <p className="mt-6 text-center text-muted">
