@@ -22,6 +22,9 @@ export const contactEmail = "learnalb@gmail.com";
 /** Debora's WhatsApp number. Stored in E.164 form; `whatsappDisplay` is the human-readable version. */
 export const whatsappNumber = "+355685168472";
 export const whatsappDisplay = "+355 68 516 8472";
+
+export const instagramUrl = "https://www.instagram.com/speakalbanianwithdebora";
+export const instagramHandle = "@speakalbanianwithdebora";
 export const whatsappUrl = (message: string) =>
   `https://wa.me/${whatsappNumber.replace("+", "")}?text=${encodeURIComponent(message)}`;
 export const isProduction = process.env.VERCEL_ENV === "production";

@@ -11,7 +11,16 @@ import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Reviews } from "@/components/Reviews";
 import { Why } from "@/components/Why";
 import { about, book, contact, hero, learn } from "@/lib/content";
-import { calendlyUrls, contactEmail, siteName, siteTagline, siteUrl, whatsappNumber, whatsappUrl } from "@/lib/site";
+import {
+  calendlyUrls,
+  contactEmail,
+  instagramUrl,
+  siteName,
+  siteTagline,
+  siteUrl,
+  whatsappNumber,
+  whatsappUrl,
+} from "@/lib/site";
 
 const personId = `${siteUrl}/#debora`;
 const websiteId = `${siteUrl}/#website`;
@@ -59,6 +68,7 @@ const jsonLd = {
       ],
       url: siteUrl,
       image: `${siteUrl}/images/debora-portrait.webp`,
+      sameAs: [instagramUrl],
       nationality: { "@type": "Country", name: "Albania" },
       knowsLanguage: [
         { "@type": "Language", name: "Albanian", alternateName: "sq" },

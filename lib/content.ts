@@ -279,11 +279,13 @@ export const contact = {
   copy: "Copy",
   copied: "Copied",
   whatsapp: "WhatsApp",
+  instagram: "Instagram",
   whatsappMessage: "Hi Debora! I'm interested in Albanian lessons.",
 } as const;
 
 export const footer = {
   tagline: "Your friendly guide to speaking Albanian with confidence.",
+  follow: "Follow along on Instagram",
   copyright: "© 2026 Learn Albanian with Debora",
 } as const;
 

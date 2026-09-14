@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { footer, nav } from "@/lib/content";
+import { instagramUrl } from "@/lib/site";
 import { EagleMark } from "./EagleMark";
+import { InstagramIcon } from "./Icons";
 
 export function Footer() {
   return (
@@ -14,6 +16,15 @@ export function Footer() {
               <span className="display text-lg text-ivory!">{nav.brand}</span>
             </Link>
             <p className="mt-3 max-w-[34ch] text-ivory/70">{footer.tagline}</p>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 font-semibold text-ivory/85 hover:text-red"
+            >
+              <InstagramIcon size={18} />
+              {footer.follow}
+            </a>
           </div>
           <nav aria-label="Footer">
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
