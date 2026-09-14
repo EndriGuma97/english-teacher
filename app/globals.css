@@ -991,4 +991,169 @@ body {
     transform: none;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Reviews: names, dates, partial ratings, 3-up on wide screens        */
+/* ------------------------------------------------------------------ */
+.review figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.review__name {
+  color: var(--ink);
+}
+.review__when {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.star--off {
+  color: var(--line);
+}
+@media (min-width: 1024px) {
+  .reviews {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Booking: lesson-type choice + Calendly slot                         */
+/* ------------------------------------------------------------------ */
+.lesson-choice {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 720px;
+  margin-inline: auto;
+}
+@media (min-width: 640px) {
+  .lesson-choice {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.lesson-choice__opt {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  text-align: left;
+  background: var(--ivory);
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.lesson-choice__opt:hover {
+  border-color: var(--red);
+  transform: translateY(-1px);
+}
+.lesson-choice__opt.is-selected {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(228, 30, 32, 0.15), var(--shadow-soft);
+}
+.lesson-choice__opt.is-selected .chip {
+  background: var(--red);
+}
+.lesson-choice__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.lesson-choice__body strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--black);
+}
+.lesson-choice__body span {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.book-slot__widget {
+  height: var(--book-h);
+  min-width: 320px;
+}
+
+/* ------------------------------------------------------------------ */
+/* English for kids: a small, quiet aside                              */
+/* ------------------------------------------------------------------ */
+.english {
+  display: grid;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--stone);
+  border-radius: var(--radius);
+}
+@media (min-width: 1024px) {
+  .english {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+.english__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.english__kicker::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  transform: rotate(45deg);
+  background: var(--red);
+}
+.english__photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.english__photos li {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--ivory);
+}
+.english__photos img {
+  object-fit: cover;
+}
+.certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.certs li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--muted);
+  max-width: 260px;
+}
+.certs img {
+  width: 72px;
+  height: auto;
+  flex: none;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  opacity: 0.9;
+}
 }

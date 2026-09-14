@@ -2,6 +2,7 @@ import { About } from "@/components/About";
 import { Approach } from "@/components/Approach";
 import { Book } from "@/components/Book";
 import { Contact } from "@/components/Contact";
+import { EnglishKids } from "@/components/EnglishKids";
 import { Hero } from "@/components/Hero";
 import { JourneyCta } from "@/components/JourneyCta";
 import { Learn } from "@/components/Learn";
@@ -35,6 +36,7 @@ export default function HomePage() {
       <Why />
       <Learn />
       <Approach />
+      <EnglishKids />
       <Reviews />
       <JourneyCta />
       <Book />

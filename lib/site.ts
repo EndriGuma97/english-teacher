@@ -14,4 +14,14 @@ export const siteUrl =
 export const siteName = "Learn Albanian with Debora";
 export const contactEmail = "learnalb@gmail.com";
 export const isProduction = process.env.VERCEL_ENV === "production";
-export const calendlyUrl = env(process.env.NEXT_PUBLIC_CALENDLY_URL);
+
+/**
+ * Debora's two Calendly event types. The defaults are her live links;
+ * the env vars exist only so they can be swapped in Vercel without a code change.
+ */
+export const calendlyUrls = {
+  one: env(process.env.NEXT_PUBLIC_CALENDLY_URL) ?? "https://calendly.com/learnalb/new-meeting",
+  group: env(process.env.NEXT_PUBLIC_CALENDLY_GROUP_URL) ?? "https://calendly.com/learnalb/learn-albanian",
+} as const;
+
+export type LessonKind = keyof typeof calendlyUrls;

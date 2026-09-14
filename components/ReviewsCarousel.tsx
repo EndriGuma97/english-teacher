@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Review } from "@/lib/content";
+import { Flag } from "./Flag";
 import { StarIcon } from "./Icons";
 
-type Review = { quote: string; attribution: string };
-
-function Stars() {
+function Stars({ rating }: { rating: number }) {
   return (
-    <span className="stars" role="img" aria-label="5 out of 5 stars">
+    <span className="stars" role="img" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => (
-        <StarIcon key={i} size={18} />
+        <StarIcon key={i} size={18} className={i < rating ? undefined : "star--off"} />
       ))}
     </span>
   );
@@ -62,17 +62,28 @@ export function ReviewsCarousel({ items }: { items: readonly Review[] }) {
         ref={listRef}
         className="reviews"
         tabIndex={0}
-        aria-label="Student reviews"
+        aria-label="Student reviews, newest first"
         onKeyDown={onKeyDown}
       >
-        {items.map((r) => (
-          <li key={r.attribution} className="review">
+        {items.map((r, i) => (
+          <li key={`${r.name}-${r.when}-${i}`} className="review">
             <figure className="contents">
-              <Stars />
+              <Stars rating={r.rating} />
               <blockquote>
                 <p>{r.quote}</p>
               </blockquote>
-              <figcaption>{r.attribution}</figcaption>
+              <figcaption>
+                <span className="review__name">
+                  {r.name}
+                  {r.country && (
+                    <>
+                      {" "}
+                      <Flag country={r.country} />
+                    </>
+                  )}
+                </span>
+                <span className="review__when">{r.when}</span>
+              </figcaption>
             </figure>
           </li>
         ))}
@@ -80,7 +91,7 @@ export function ReviewsCarousel({ items }: { items: readonly Review[] }) {
       <div className="dots md:hidden" role="tablist" aria-label="Choose a review">
         {items.map((r, i) => (
           <button
-            key={r.attribution}
+            key={`${r.name}-${r.when}-${i}`}
             type="button"
             role="tab"
             className="dot"

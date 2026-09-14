@@ -127,27 +127,84 @@ export const approach = {
   ],
 } as const;
 
+export type Review = {
+  quote: string;
+  /** "Student" when the platform only shows a date. */
+  name: string;
+  country?: "BE" | "US" | "IT" | "RO" | "GB";
+  /** Approximate month; the list below is ordered newest first. */
+  when: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+};
+
 export const reviews = {
   heading: "What my students say",
   items: [
     {
       quote:
-        "Thank you so much Teacher Debora!! I'm so happy to see you and know each other^^ You are so kindly and patiently, so that I could study comfortably. See you soon !! Feleminderit^^",
-      attribution: "Student, April 2022",
+        "Deborah adjusts her teaching according to your level and is well prepared with exercises and teaching material.",
+      name: "Katrien",
+      country: "BE",
+      when: "August 2026",
+      rating: 5,
     },
     {
-      quote: "It is always fun to talk to her. Thank you for your lesson.",
-      attribution: "Student, January 2023",
+      quote:
+        "An amazing tutor who has helped me so much. She is very professional and attentive to detail, very helpful with pronunciation & accent reduction. I am very happy with my progress from this tutor! She is so kind!",
+      name: "Elizabeth",
+      country: "US",
+      when: "August 2026",
+      rating: 5,
+    },
+    {
+      quote: "A great teacher.",
+      name: "Stefano",
+      country: "IT",
+      when: "August 2026",
+      rating: 4,
+    },
+    {
+      quote: "Deborah is an amazing tutor. She is very attentive and supportive.",
+      name: "Qamile",
+      country: "IT",
+      when: "July 2026",
+      rating: 5,
+    },
+    {
+      quote:
+        "Deborah is a very involved person who helps you progress quickly and with very well-structured lessons.",
+      name: "Mitrache",
+      country: "RO",
+      when: "July 2026",
+      rating: 5,
+    },
+    {
+      quote: "Professional, kind, cooperative, caring tutor that guarantees success.",
+      name: "Xhuljana",
+      country: "GB",
+      when: "2025",
+      rating: 5,
     },
     {
       quote: "Debora is very kind and friendly. Her pronunciation is very beautiful.",
-      attribution: "Student, May 2023",
+      name: "Student",
+      when: "May 2023",
+      rating: 5,
     },
     {
-      quote: "Professional, kind, cooperative, caring tutor that guarantees success",
-      attribution: "Xhuljana 🇬🇧, Google review",
+      quote: "It is always fun to talk to her. Thank you for your lesson.",
+      name: "Student",
+      when: "January 2023",
+      rating: 5,
     },
-  ],
+    {
+      quote:
+        "Thank you so much Teacher Debora!! I'm so happy to see you and know each other^^ You are so kindly and patiently, so that I could study comfortably. See you soon !! Feleminderit^^",
+      name: "Student",
+      when: "April 2022",
+      rating: 5,
+    },
+  ] satisfies Review[],
 } as const;
 
 export const journey = {
@@ -165,12 +222,55 @@ export const journey = {
 export const book = {
   heading: "Reserve your spot",
   subtext: "Pick a time that suits you and let's start speaking Albanian.",
-  steps: ["Reserve your spot", "Meet me online for your first lesson", "Start speaking Albanian"],
-  placeholder: {
-    title: "📅 Booking calendar coming soon",
-    line: "Debora's Calendly schedule will appear here.",
+  steps: ["Choose 1:1 or group", "Pick a time that suits you", "Meet me online and start speaking Albanian"],
+  choose: {
+    label: "First, what kind of lesson would you like?",
+    options: [
+      {
+        key: "one",
+        emoji: "🙋",
+        title: "1:1 lessons",
+        text: "Private lessons, fully adapted to your level and goals.",
+      },
+      {
+        key: "group",
+        emoji: "👥",
+        title: "Group class",
+        text: "Learn Albanian in a small, fun and friendly beginner group.",
+      },
+    ],
+    hint: "Choose a lesson type above and the available times will appear here.",
   },
   emailPrompt: "Prefer email? Write to me at",
+} as const;
+
+export const english = {
+  kicker: "Also",
+  heading: "I teach English to kids, too",
+  text: "Alongside Albanian, I'm a TEFL/TESOL-certified English teacher. I've taught hundreds of online English lessons to children and international students — with songs, phonics, drawing and lots of encouragement. If your child needs a friendly English tutor, get in touch.",
+  cta: "Ask about English lessons",
+  emailSubject: "English lessons for my child",
+  photos: [
+    { src: "/images/english-hello-song.jpg", alt: "A Hello Song slide from one of Debora's English lessons for children" },
+    { src: "/images/english-phonics.jpg", alt: "A phonics lesson slide on long vowels used in Debora's English classes" },
+    { src: "/images/english-drawing.jpg", alt: "Hearts drawn together with a young student during an online English lesson" },
+  ],
+  certificates: [
+    {
+      src: "/images/cert-tefl.jpg",
+      width: 640,
+      height: 452,
+      alt: "120-hour Advanced TEFL/TESOL certificate, TEFL Universal, 2021",
+      label: "120-hour Advanced TEFL/TESOL, 2021",
+    },
+    {
+      src: "/images/cert-tesol.jpg",
+      width: 640,
+      height: 452,
+      alt: "TESOL certificate, American TESOL Institute, 2026",
+      label: "TESOL Certificate, American TESOL Institute, 2026",
+    },
+  ],
 } as const;
 
 export const contact = {

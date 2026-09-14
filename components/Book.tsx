@@ -1,6 +1,6 @@
 import { book } from "@/lib/content";
-import { calendlyUrl, contactEmail } from "@/lib/site";
-import { CalendlyEmbed } from "./CalendlyEmbed";
+import { contactEmail } from "@/lib/site";
+import { BookingChooser } from "./BookingChooser";
 
 export function Book() {
   return (
@@ -19,8 +19,8 @@ export function Book() {
           ))}
         </ol>
 
-        <div className="book-slot mt-8">
-          <CalendlyEmbed url={calendlyUrl} />
+        <div className="mt-10">
+          <BookingChooser />
         </div>
 
         <p className="mt-6 text-center text-muted">
