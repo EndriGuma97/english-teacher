@@ -1,5 +1,5 @@
-import { book } from "@/lib/content";
-import { contactEmail } from "@/lib/site";
+import { book, contact } from "@/lib/content";
+import { contactEmail, whatsappUrl } from "@/lib/site";
 import { BookingChooser } from "./BookingChooser";
 
 export function Book() {
@@ -27,7 +27,17 @@ export function Book() {
           {book.emailPrompt}{" "}
           <a href={`mailto:${contactEmail}`} className="font-semibold text-red underline-offset-4 hover:underline">
             {contactEmail}
+          </a>{" "}
+          {book.orWhatsApp}{" "}
+          <a
+            href={whatsappUrl(contact.whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-red underline-offset-4 hover:underline"
+          >
+            {contact.whatsapp}
           </a>
+          .
         </p>
       </div>
     </section>

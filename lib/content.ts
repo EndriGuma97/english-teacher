@@ -241,7 +241,8 @@ export const book = {
     ],
     hint: "Choose a lesson type above and the available times will appear here.",
   },
-  emailPrompt: "Prefer email? Write to me at",
+  emailPrompt: "Have a question first? Write to me at",
+  orWhatsApp: "or message me on",
 } as const;
 
 export const english = {
@@ -277,6 +278,8 @@ export const contact = {
   heading: "Contact",
   copy: "Copy",
   copied: "Copied",
+  whatsapp: "WhatsApp",
+  whatsappMessage: "Hi Debora! I'm interested in Albanian lessons.",
 } as const;
 
 export const footer = {

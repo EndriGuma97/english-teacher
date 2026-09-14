@@ -10,8 +10,8 @@ import { Marquee } from "@/components/Marquee";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Reviews } from "@/components/Reviews";
 import { Why } from "@/components/Why";
-import { about, book, hero, learn } from "@/lib/content";
-import { calendlyUrls, contactEmail, siteName, siteTagline, siteUrl } from "@/lib/site";
+import { about, book, contact, hero, learn } from "@/lib/content";
+import { calendlyUrls, contactEmail, siteName, siteTagline, siteUrl, whatsappNumber, whatsappUrl } from "@/lib/site";
 
 const personId = `${siteUrl}/#debora`;
 const websiteId = `${siteUrl}/#website`;
@@ -46,6 +46,17 @@ const jsonLd = {
       jobTitle: "Albanian Language Teacher",
       description: about.paragraphs[0][0],
       email: contactEmail,
+      telephone: whatsappNumber,
+      contactPoint: [
+        { "@type": "ContactPoint", contactType: "customer service", email: contactEmail, availableLanguage: ["en", "sq"] },
+        {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          telephone: whatsappNumber,
+          url: whatsappUrl(contact.whatsappMessage),
+          availableLanguage: ["en", "sq"],
+        },
+      ],
       url: siteUrl,
       image: `${siteUrl}/images/debora-portrait.webp`,
       nationality: { "@type": "Country", name: "Albania" },

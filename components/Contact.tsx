@@ -1,7 +1,7 @@
 import { contact } from "@/lib/content";
-import { contactEmail } from "@/lib/site";
+import { contactEmail, whatsappDisplay, whatsappUrl } from "@/lib/site";
 import { CopyEmailButton } from "./CopyEmailButton";
-import { MailIcon } from "./Icons";
+import { MailIcon, WhatsAppIcon } from "./Icons";
 
 export function Contact() {
   return (
@@ -19,6 +19,16 @@ export function Contact() {
             {contactEmail}
           </a>
           <CopyEmailButton email={contactEmail} />
+          <a
+            href={whatsappUrl(contact.whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${contact.whatsapp} ${whatsappDisplay}`}
+            className="inline-flex min-h-11 items-center gap-2 text-lg font-semibold text-black underline-offset-4 hover:text-red hover:underline"
+          >
+            <WhatsAppIcon size={20} className="text-red" />
+            {whatsappDisplay}
+          </a>
         </div>
       </div>
     </section>
