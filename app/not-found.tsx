@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { EagleMark } from "@/components/EagleMark";
 import { notFound } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: notFound.title,
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

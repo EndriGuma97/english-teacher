@@ -4,16 +4,24 @@ function env(value: string | undefined): string | undefined {
   return v ? v : undefined;
 }
 
-const configuredUrl = env(process.env.NEXT_PUBLIC_SITE_URL);
-const vercelProductionUrl = env(process.env.VERCEL_PROJECT_PRODUCTION_URL);
+/**
+ * The live domain. The apex (learnalbanianwithdebora.com) 308-redirects to `www` in Vercel,
+ * so `www` is the canonical host for search engines and social previews.
+ */
+export const productionUrl = "https://www.learnalbanianwithdebora.com";
 
-export const siteUrl =
-  configuredUrl ??
-  (vercelProductionUrl ? `https://${vercelProductionUrl}` : "http://localhost:3000");
+const configuredUrl = env(process.env.NEXT_PUBLIC_SITE_URL);
+
+/** Canonical origin: env override → the live domain on Vercel → localhost when developing. */
+export const siteUrl = configuredUrl ?? (process.env.VERCEL ? productionUrl : "http://localhost:3000");
 
 export const siteName = "Learn Albanian with Debora";
+export const siteTagline = "Online Albanian Lessons with a Native Teacher";
 export const contactEmail = "learnalb@gmail.com";
 export const isProduction = process.env.VERCEL_ENV === "production";
+
+/** Brand colours, mirrored from `app/globals.css` for the manifest and theme-color tags. */
+export const brand = { red: "#e41e20", ivory: "#fffdf7" } as const;
 
 /**
  * Debora's two Calendly event types. The defaults are her live links;

@@ -26,7 +26,7 @@ Copy `.env.example` to `.env.local` for local work. Never commit `.env.local`.
 |---|---|
 | `NEXT_PUBLIC_CALENDLY_URL` | Optional override for the **1:1** Calendly event. Default: `https://calendly.com/learnalb/new-meeting`. |
 | `NEXT_PUBLIC_CALENDLY_GROUP_URL` | Optional override for the **group class** Calendly event. Default: `https://calendly.com/learnalb/learn-albanian`. |
-| `NEXT_PUBLIC_SITE_URL` | The final custom domain (e.g. `https://www.example.com`). Used for the canonical URL, Open Graph tags and the sitemap. Until it is set the code falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`. |
+| `NEXT_PUBLIC_SITE_URL` | Optional override for the canonical origin. The live domain `https://www.learnalbanianwithdebora.com` is the default on Vercel (see `lib/site.ts`), so this only needs setting if the domain ever changes. Used for the canonical URL, Open Graph tags, JSON-LD and the sitemap. |
 
 Both are `NEXT_PUBLIC_*`, so they are inlined at **build time**: after changing a value in
 Vercel → Settings → Environment Variables, trigger a **Redeploy** for it to take effect.
@@ -64,13 +64,15 @@ brand. The two event URLs live in `lib/site.ts`; the env vars above only overrid
    login, adjust Settings → Deployment Protection.) Previews are served with `noindex`; only production is
    indexable.
 3. Add the environment variables above for Production and Preview, then redeploy.
-4. **Custom domain:** Settings → Domains → add both the apex domain and `www`, choose one as primary
-   (Vercel redirects the other) and set the DNS records exactly as the dashboard shows, or move DNS to
-   Vercel's nameservers. SSL is automatic.
+4. **Custom domain:** `learnalbanianwithdebora.com` and `www.learnalbanianwithdebora.com` are added in
+   Settings → Domains. `www` is primary; the apex 308-redirects to it. SSL is automatic. If the domain
+   ever changes, update `productionUrl` in `lib/site.ts` (or set `NEXT_PUBLIC_SITE_URL`).
 5. Enable **Web Analytics** and **Speed Insights** in the project dashboard (the `<Analytics />` and
    `<SpeedInsights />` components are already in `app/layout.tsx`). After launch, watch Speed Insights for
    real-user Core Web Vitals.
-6. Submit `https://<domain>/sitemap.xml` to Google Search Console.
+6. Verify the site in [Google Search Console](https://search.google.com/search-console) (Domain property for
+   `learnalbanianwithdebora.com`) and submit `https://www.learnalbanianwithdebora.com/sitemap.xml`. Check the
+   structured data with the [Rich Results Test](https://search.google.com/test/rich-results).
 7. If a deployment ever breaks the site, open Deployments and promote the previous good one
    (**Instant Rollback**).
 8. **Plan note:** Vercel's fair-use guidelines restrict the free Hobby plan to non-commercial, personal use.
