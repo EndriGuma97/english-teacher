@@ -30,7 +30,7 @@ export const hero = {
   primaryCta: { label: "Reserve your spot", href: "#book" },
   secondaryCta: { label: "Why learn with me", href: "#why" },
   trust: ["8 years of teaching", "5,000+ students worldwide", "Native speaker"],
-  badge: { greeting: "Përshëndetje!", emoji: "👋", line: "Native Albanian speaker" },
+  badge: { greeting: "Përshëndetje!", emoji: "👋", line: "Native Albanian Teacher" },
   portraitAlt: "Debora, a native Albanian teacher, smiling in a royal-blue dress",
 } as const;
 
