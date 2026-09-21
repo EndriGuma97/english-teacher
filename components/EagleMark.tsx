@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-/** Stylised, geometric double-headed eagle — the brand mark. Not the official coat of arms. */
+/** Stylised, geometric double-headed eagle, drawn inside the Albanian flag (see Emoji.tsx). Not the official coat of arms. */
 export function EagleMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" focusable="false" {...props}>

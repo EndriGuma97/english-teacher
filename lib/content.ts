@@ -19,6 +19,7 @@ export const nav = {
     { label: "What you'll learn", href: "#learn" },
     { label: "My approach", href: "#approach" },
     { label: "Reviews", href: "#reviews" },
+    { label: "Packages", href: "#packages" },
     { label: "Contact", href: "#contact" },
   ],
   cta: { label: "Reserve your spot", href: "#book" },
@@ -207,6 +208,92 @@ export const reviews = {
   ] satisfies Review[],
 } as const;
 
+export type Plan = {
+  key: string;
+  emoji: string;
+  name: string;
+  classes: string;
+  /** Prices in euros per month: the regular price (shown struck through) and the package price. */
+  was: number;
+  price: number;
+  text: string;
+  features: { emoji: string; text: string }[];
+};
+
+export const packages = {
+  heading: "Lesson Packages",
+  subheading: "Choose the package that fits your learning goals",
+  note: [
+    "All lessons are ",
+    { text: "50 minutes", kind: "strong" },
+    " and personalised according to your level, goals and learning pace.",
+  ] as RichText,
+  currency: "EUR",
+  perMonth: "/ month",
+  save: "Save",
+  included: "What’s included:",
+  cta: { label: "Reserve your spot", href: "#book" },
+  plans: [
+    {
+      key: "starter",
+      emoji: "🌱",
+      name: "Starter",
+      classes: "4 classes per month",
+      was: 140,
+      price: 120,
+      text: "Perfect for students who want to learn Albanian at a relaxed pace.",
+      features: [
+        { emoji: "📖", text: "Grammar" },
+        { emoji: "🧠", text: "New vocabulary & useful expressions" },
+        { emoji: "🗣️", text: "Speaking & conversation practice" },
+        { emoji: "✍️", text: "Writing practice" },
+        { emoji: "📝", text: "Exercises & activities" },
+        { emoji: "👂", text: "Listening practice" },
+        { emoji: "🇦🇱", text: "Everyday Albanian & cultural insights" },
+      ],
+    },
+    {
+      key: "regular",
+      emoji: "📚",
+      name: "Regular",
+      classes: "8 classes per month",
+      was: 220,
+      price: 180,
+      text: "A great option for students who want consistent practice and steady progress.",
+      features: [
+        { emoji: "📖", text: "Grammar & sentence structure" },
+        { emoji: "🧠", text: "New vocabulary & expressions" },
+        { emoji: "🗣️", text: "Speaking & conversation" },
+        { emoji: "✍️", text: "Writing practice" },
+        { emoji: "📝", text: "Exercises & homework" },
+        { emoji: "👂", text: "Listening & comprehension" },
+        { emoji: "💬", text: "Real-life Albanian conversations" },
+        { emoji: "🇦🇱", text: "Albanian culture & everyday language" },
+      ],
+    },
+    {
+      key: "intensive",
+      emoji: "🚀",
+      name: "Intensive",
+      classes: "12 classes per month",
+      was: 300,
+      price: 220,
+      text: "Designed for students who want frequent practice and faster progress.",
+      features: [
+        { emoji: "📖", text: "Grammar" },
+        { emoji: "🧠", text: "Vocabulary expansion" },
+        { emoji: "🗣️", text: "Speaking & conversation" },
+        { emoji: "✍️", text: "Writing & sentence-building" },
+        { emoji: "📝", text: "Exercises & homework" },
+        { emoji: "👂", text: "Listening & comprehension" },
+        { emoji: "💬", text: "Real-life conversations" },
+        { emoji: "🇦🇱", text: "Cultural insights" },
+        { emoji: "📚", text: "Personalised lessons based on your goals" },
+      ],
+    },
+  ] satisfies Plan[],
+} as const;
+
 export const journey = {
   heading: "Your Albanian journey starts here.",
   paragraph: [
@@ -222,25 +309,8 @@ export const journey = {
 export const book = {
   heading: "Reserve your spot",
   subtext: "Pick a time that suits you and let's start speaking Albanian.",
-  steps: ["Choose 1:1 or group", "Pick a time that suits you", "Meet me online and start speaking Albanian"],
-  choose: {
-    label: "First, what kind of lesson would you like?",
-    options: [
-      {
-        key: "one",
-        emoji: "🙋",
-        title: "1:1 lessons",
-        text: "Private lessons, fully adapted to your level and goals.",
-      },
-      {
-        key: "group",
-        emoji: "👥",
-        title: "Group class",
-        text: "Learn Albanian in a small, fun and friendly beginner group.",
-      },
-    ],
-    hint: "Choose a lesson type above and the available times will appear here.",
-  },
+  steps: ["Choose your package", "Pick a time that suits you", "Meet me online and start speaking Albanian"],
+  calendarLabel: "Booking calendar",
   emailPrompt: "Have a question first? Write to me at",
   orWhatsApp: "or message me on",
 } as const;

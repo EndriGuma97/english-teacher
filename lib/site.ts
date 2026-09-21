@@ -33,12 +33,8 @@ export const isProduction = process.env.VERCEL_ENV === "production";
 export const brand = { red: "#e41e20", ivory: "#fffdf7" } as const;
 
 /**
- * Debora's two Calendly event types. The defaults are her live links;
- * the env vars exist only so they can be swapped in Vercel without a code change.
+ * Debora's Calendly event (the group class). The default is her live link;
+ * the env var exists only so it can be swapped in Vercel without a code change.
  */
-export const calendlyUrls = {
-  one: env(process.env.NEXT_PUBLIC_CALENDLY_URL) ?? "https://calendly.com/learnalb/new-meeting",
-  group: env(process.env.NEXT_PUBLIC_CALENDLY_GROUP_URL) ?? "https://calendly.com/learnalb/learn-albanian",
-} as const;
-
-export type LessonKind = keyof typeof calendlyUrls;
+export const calendlyUrl =
+  env(process.env.NEXT_PUBLIC_CALENDLY_GROUP_URL) ?? "https://calendly.com/learnalb/learn-albanian";

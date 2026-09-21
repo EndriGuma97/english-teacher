@@ -3,9 +3,10 @@
 Single-page marketing website for Debora, a native Albanian teacher who teaches international students online.
 Built with **Next.js (App Router, TypeScript, Tailwind)** and deployed on **Vercel** as a fully static site.
 
-- Design: modern layout with Albanian identity carried by flag red, true black, a qilim (kilim) pattern and a geometric double-headed eagle mark.
+- Design: modern layout with Albanian identity carried by flag red, true black, a qilim (kilim) pattern and the "Learn Albanian with Debora" logo (a plis felt cap on the A).
 - Copy: every line of text lives in `lib/content.ts`.
-- Booking: the visitor picks **1:1** or **group class**, then the matching Calendly calendar loads inline.
+- Packages: the three monthly lesson packages (Starter / Regular / Intensive) and their prices live in `packages` in `lib/content.ts`.
+- Booking: Debora's Calendly calendar (the group class event) loads inline in the "Reserve your spot" section.
 
 ## Run locally
 
@@ -24,8 +25,7 @@ Copy `.env.example` to `.env.local` for local work. Never commit `.env.local`.
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_CALENDLY_URL` | Optional override for the **1:1** Calendly event. Default: `https://calendly.com/learnalb/new-meeting`. |
-| `NEXT_PUBLIC_CALENDLY_GROUP_URL` | Optional override for the **group class** Calendly event. Default: `https://calendly.com/learnalb/learn-albanian`. |
+| `NEXT_PUBLIC_CALENDLY_GROUP_URL` | Optional override for the Calendly event (the **group class**). Default: `https://calendly.com/learnalb/learn-albanian`. |
 | `NEXT_PUBLIC_SITE_URL` | Optional override for the canonical origin. The live domain `https://www.learnalbanianwithdebora.com` is the default on Vercel (see `lib/site.ts`), so this only needs setting if the domain ever changes. Used for the canonical URL, Open Graph tags, JSON-LD and the sitemap. |
 
 Both are `NEXT_PUBLIC_*`, so they are inlined at **build time**: after changing a value in
@@ -33,9 +33,10 @@ Vercel → Settings → Environment Variables, trigger a **Redeploy** for it to 
 
 ### Booking flow
 
-`components/BookingChooser.tsx` shows two options (1:1 / group). Once one is chosen it loads Calendly's
-script lazily and mounts the matching event inline with `primary_color=e41e20` so the widget matches the
-brand. The two event URLs live in `lib/site.ts`; the env vars above only override them.
+`components/CalendlyEmbed.tsx` mounts the Calendly event inline with `primary_color=e41e20` so the widget
+matches the brand. Calendly's script is only requested once the visitor scrolls near the booking block, and
+the slot keeps a reserved height so nothing shifts. The event URL lives in `lib/site.ts`; the env var above
+only overrides it.
 
 ## Editing the site
 
@@ -52,7 +53,10 @@ brand. The two event URLs live in `lib/site.ts`; the env vars above only overrid
 - **Reviews** — `reviews.items` in `lib/content.ts`, newest first. Each has `name`, optional `country`
   (BE/US/IT/RO/GB flag; add more in `components/Flag.tsx`), `when` and `rating`.
 - **Open Graph image** — `app/opengraph-image.jpg` and `app/twitter-image.jpg` (1200×630).
-- **Favicon / brand mark** — `app/icon.svg`, `app/apple-icon.png`, `components/EagleMark.tsx`.
+- **Packages and prices** — `packages.plans` in `lib/content.ts` (`was` is the struck-through price, `price` the
+  package price; the "Save €…" badge and the JSON-LD offers are calculated from them).
+- **Logo / favicon** — `public/brand/*.svg` (rendered by `components/Logo.tsx`), `app/icon.svg`,
+  `app/apple-icon.png`, `app/favicon.ico`. Hand-off files for social profiles and print are in `brand/`.
 - **Tokens and signature CSS** (qilim pattern, arch, marquee, hero entrance) — `app/globals.css`.
 
 ## Deploying on Vercel
@@ -83,10 +87,13 @@ brand. The two event URLs live in `lib/site.ts`; the env vars above only overrid
 
 ```
 app/            layout (fonts, metadata, analytics), page, globals.css, icons, OG images, robots, sitemap, 404
-components/     Nav, Hero, Marquee, About, Why, Learn, Approach, Reviews, JourneyCta, Book, CalendlyEmbed,
-                Contact, CopyEmailButton, Footer, MobileCtaBar, EagleMark, Icons, RichText
+components/     Nav, Hero, Marquee, About, Why, Learn, Approach, Reviews, Packages, JourneyCta, Book,
+                CalendlyEmbed, Contact, CopyEmailButton, Footer, MobileCtaBar, Logo, EagleMark (flag only),
+                Icons, RichText
 lib/            content.ts (all copy), site.ts (site URL, name, email)
-public/images/  the four photos used on the page
+public/images/  the photos used on the page
+public/brand/   the logo SVGs used by the site
+brand/          logo hand-off files (PNG + SVG)
 docs/           the original website brief
 ```
 

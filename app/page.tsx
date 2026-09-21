@@ -8,11 +8,11 @@ import { JourneyCta } from "@/components/JourneyCta";
 import { Learn } from "@/components/Learn";
 import { Marquee } from "@/components/Marquee";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { Packages } from "@/components/Packages";
 import { Reviews } from "@/components/Reviews";
 import { Why } from "@/components/Why";
-import { about, book, contact, hero, learn } from "@/lib/content";
+import { about, book, contact, hero, learn, packages } from "@/lib/content";
 import {
-  calendlyUrls,
   contactEmail,
   instagramUrl,
   siteName,
@@ -25,7 +25,7 @@ import {
 const personId = `${siteUrl}/#debora`;
 const websiteId = `${siteUrl}/#website`;
 
-/** Structured data: the site, Debora, and the two lesson types she offers. */
+/** Structured data: the site, Debora, and the lesson packages she offers. */
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -96,12 +96,14 @@ const jsonLd = {
       availableChannel: { "@type": "ServiceChannel", serviceUrl: `${siteUrl}/#book`, availableLanguage: "en" },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Lesson types",
-        itemListElement: book.choose.options.map((option) => ({
+        name: packages.heading,
+        itemListElement: packages.plans.map((plan) => ({
           "@type": "Offer",
-          name: option.title,
-          description: option.text,
-          url: calendlyUrls[option.key],
+          name: `${plan.name} — ${plan.classes}`,
+          description: plan.text,
+          price: plan.price,
+          priceCurrency: packages.currency,
+          url: `${siteUrl}/#packages`,
           category: "Albanian lessons",
         })),
       },
@@ -124,6 +126,7 @@ export default function HomePage() {
       <Approach />
       <EnglishKids />
       <Reviews />
+      <Packages />
       <JourneyCta />
       <Book />
       <Contact />

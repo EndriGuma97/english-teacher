@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { footer, nav } from "@/lib/content";
 import { instagramUrl } from "@/lib/site";
-import { EagleMark } from "./EagleMark";
 import { InstagramIcon } from "./Icons";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
@@ -11,11 +11,10 @@ export function Footer() {
       <div className="container py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5 no-underline">
-              <EagleMark className="h-8 w-8 text-red" />
-              <span className="display text-lg text-ivory!">{nav.brand}</span>
+            <Link href="/" className="inline-flex no-underline" aria-label={`${nav.brand} — home`}>
+              <Logo variant="light" className="h-auto w-44" />
             </Link>
-            <p className="mt-3 max-w-[34ch] text-ivory/70">{footer.tagline}</p>
+            <p className="mt-5 max-w-[34ch] text-ivory/70">{footer.tagline}</p>
             <a
               href={instagramUrl}
               target="_blank"

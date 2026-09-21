@@ -673,11 +673,11 @@ body {
   overflow: hidden;
   isolation: isolate;
 }
-.approach__eagle {
+.approach__mark {
   position: absolute;
-  right: -6%;
-  bottom: -12%;
-  width: clamp(280px, 40vw, 560px);
+  right: -8%;
+  bottom: -10%;
+  width: clamp(320px, 46vw, 640px);
   height: auto;
   color: var(--ivory);
   opacity: 0.06;
@@ -872,6 +872,7 @@ body {
   min-height: var(--book-h);
   border-radius: var(--radius);
   overflow: hidden;
+  background: var(--stone);
 }
 .book-placeholder {
   min-height: var(--book-h);
@@ -1019,59 +1020,8 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Booking: lesson-type choice + Calendly slot                         */
+/* Booking: Calendly slot                                              */
 /* ------------------------------------------------------------------ */
-.lesson-choice {
-  display: grid;
-  gap: 0.75rem;
-  max-width: 720px;
-  margin-inline: auto;
-}
-@media (min-width: 640px) {
-  .lesson-choice {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.lesson-choice__opt {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  width: 100%;
-  padding: 1rem 1.1rem;
-  text-align: left;
-  background: var(--ivory);
-  border: 2px solid var(--line);
-  border-radius: 16px;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.lesson-choice__opt:hover {
-  border-color: var(--red);
-  transform: translateY(-1px);
-}
-.lesson-choice__opt.is-selected {
-  border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(228, 30, 32, 0.15), var(--shadow-soft);
-}
-.lesson-choice__opt.is-selected .chip {
-  background: var(--red);
-}
-.lesson-choice__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-.lesson-choice__body strong {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--black);
-}
-.lesson-choice__body span {
-  font-size: 0.92rem;
-  color: var(--muted);
-}
 .book-slot__widget {
   height: var(--book-h);
   min-width: 320px;
@@ -1155,5 +1105,114 @@ body {
   border-radius: 4px;
   background: #fff;
   opacity: 0.9;
+}
+
+/* ------------------------------------------------------------------ */
+/* Lesson packages                                                     */
+/* ------------------------------------------------------------------ */
+.plans {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+@media (min-width: 1024px) {
+  .plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 1.5rem 1.75rem;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.plan::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 10px;
+  background: var(--qilim-band) repeat-x center top / 24px 12px;
+}
+.plan:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+.plan__name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.plan__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  line-height: 1;
+}
+.plan__price s {
+  font-size: 1.25rem;
+  color: var(--muted);
+  text-decoration-thickness: 2px;
+}
+.plan__price strong {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--red);
+}
+.plan__per {
+  font-weight: 600;
+  color: var(--muted);
+}
+.plan__save {
+  align-self: flex-start;
+  min-height: 32px;
+  padding-block: 0.2rem;
+}
+.plan__features {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0.98em;
+}
+.plan__features li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+.plan__emoji {
+  flex: none;
+  width: 1.5em;
+  text-align: center;
+  font-family:
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+}
+@media (prefers-reduced-motion: reduce) {
+  .plan {
+    transition: none;
+  }
+  .plan:hover {
+    transform: none;
+  }
 }
 }

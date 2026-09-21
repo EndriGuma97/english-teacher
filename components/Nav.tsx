@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { nav } from "@/lib/content";
-import { EagleMark } from "./EagleMark";
 import { CloseIcon, MenuIcon } from "./Icons";
+import { Logo } from "./Logo";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,9 +47,8 @@ export function Nav() {
   return (
     <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
       <nav className="container flex items-center justify-between gap-4" aria-label="Main">
-        <Link href="/" className="flex items-center gap-2.5 no-underline" aria-label="Learn Albanian with Debora — home">
-          <EagleMark className="h-8 w-8 text-red" />
-          <span className="display whitespace-nowrap text-[1.05rem] leading-tight sm:text-lg">{nav.brand}</span>
+        <Link href="/" className="flex flex-none items-center no-underline" aria-label={`${nav.brand} — home`}>
+          <Logo eager className="h-14 w-auto" />
         </Link>
 
         <ul className="hidden items-center gap-5 lg:flex">
@@ -83,10 +82,7 @@ export function Nav() {
       {open && (
         <div id="mobile-menu" className="menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="flex items-center justify-between" style={{ height: "var(--nav-h)" }}>
-            <span className="flex items-center gap-2.5">
-              <EagleMark className="h-8 w-8 text-red" />
-              <span className="display text-[1.05rem]">{nav.brand}</span>
-            </span>
+            <Logo eager alt={nav.brand} className="h-14 w-auto" />
             <button ref={closeRef} type="button" className="icon-btn" aria-label="Close menu" onClick={close}>
               <CloseIcon size={22} />
             </button>

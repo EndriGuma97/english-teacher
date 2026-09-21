@@ -5,7 +5,7 @@ const FLAG = "🇦🇱";
 
 /**
  * The Albanian flag emoji has no glyph on Windows (it shows as "AL"),
- * so it is drawn as a small inline SVG: flag red with the geometric eagle mark.
+ * so it is drawn as a small inline SVG: flag red with a geometric eagle.
  */
 export function AlbanianFlag({ className = "flag" }: { className?: string }) {
   return (
