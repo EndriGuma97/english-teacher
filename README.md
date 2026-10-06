@@ -6,7 +6,7 @@ Built with **Next.js (App Router, TypeScript, Tailwind)** and deployed on **Verc
 - Design: modern layout with Albanian identity carried by flag red, true black, a qilim (kilim) pattern and the "Learn Albanian with Debora" logo (a plis felt cap on the A).
 - Copy: every line of text lives in `lib/content.ts`.
 - Packages: the three monthly lesson packages (Starter / Regular / Intensive) and their prices live in `packages` in `lib/content.ts`.
-- Booking: Debora's Calendly calendar (the group class event) loads inline in the "Reserve your spot" section.
+- Booking: the visitor picks **1:1** or **group class**, then the matching Calendly calendar loads inline.
 
 ## Run locally
 
@@ -25,18 +25,19 @@ Copy `.env.example` to `.env.local` for local work. Never commit `.env.local`.
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_CALENDLY_GROUP_URL` | Optional override for the Calendly event (the **group class**). Default: `https://calendly.com/learnalb/learn-albanian`. |
+| `NEXT_PUBLIC_CALENDLY_URL` | Optional override for the **1:1** Calendly event. Default: `https://calendly.com/learnalb/new-meeting`. |
+| `NEXT_PUBLIC_CALENDLY_GROUP_URL` | Optional override for the **group class** Calendly event. Default: `https://calendly.com/learnalb/learn-albanian`. |
 | `NEXT_PUBLIC_SITE_URL` | Optional override for the canonical origin. The live domain `https://www.learnalbanianwithdebora.com` is the default on Vercel (see `lib/site.ts`), so this only needs setting if the domain ever changes. Used for the canonical URL, Open Graph tags, JSON-LD and the sitemap. |
 
-Both are `NEXT_PUBLIC_*`, so they are inlined at **build time**: after changing a value in
+All are `NEXT_PUBLIC_*`, so they are inlined at **build time**: after changing a value in
 Vercel → Settings → Environment Variables, trigger a **Redeploy** for it to take effect.
 
 ### Booking flow
 
-`components/CalendlyEmbed.tsx` mounts the Calendly event inline with `primary_color=e41e20` so the widget
-matches the brand. Calendly's script is only requested once the visitor scrolls near the booking block, and
-the slot keeps a reserved height so nothing shifts. The event URL lives in `lib/site.ts`; the env var above
-only overrides it.
+`components/CalendlyEmbed.tsx` shows two options (1:1 / group). Once one is chosen it mounts the matching
+Calendly event inline with `primary_color=e41e20` so the widget matches the brand; switching the lesson type
+re-initialises the widget in the same slot. Calendly's script is only requested once the visitor scrolls near
+the booking block. The two event URLs live in `lib/site.ts`; the env vars above only override them.
 
 ## Editing the site
 

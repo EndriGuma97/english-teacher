@@ -310,6 +310,24 @@ export const book = {
   heading: "Reserve your spot",
   subtext: "Pick a time that suits you and let's start speaking Albanian.",
   steps: ["Choose your package", "Pick a time that suits you", "Meet me online and start speaking Albanian"],
+  choose: {
+    label: "What kind of lesson would you like?",
+    options: [
+      {
+        key: "one",
+        emoji: "🙋",
+        title: "1:1 lessons",
+        text: "Private lessons, fully adapted to your level and goals.",
+      },
+      {
+        key: "group",
+        emoji: "👥",
+        title: "Group class",
+        text: "Learn Albanian in a small, fun and friendly beginner group.",
+      },
+    ],
+    hint: "Choose a lesson type above and the available times will appear here.",
+  },
   calendarLabel: "Booking calendar",
   emailPrompt: "Have a question first? Write to me at",
   orWhatsApp: "or message me on",
